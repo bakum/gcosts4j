@@ -3,17 +3,17 @@ package org.bakum.gcosts;
 import org.bakum.gcosts.interfaces.ICosts;
 
 public class Costs implements ICosts {
-    private Double cost;      //Стоимость
+    private Double price;      //Тариф
     private Double quantity;  //Количество
 
     public Costs() {
-        this.cost = 0.0;
+        this.price = 0.0;
         this.quantity = 0.0;
     }
 
-    public Costs(Double c, Double q) {
-        this.cost = c;
-        this.quantity = q;
+    public Costs(Double price, Double quantity) {
+        this.price = price;
+        this.quantity = quantity;
     }
 
     @Override
@@ -27,12 +27,13 @@ public class Costs implements ICosts {
     }
 
     @Override
-    public void setCost(Double c) {
-        this.cost = c;
+    public void setPrice(Double c) {
+        this.price = c;
     }
 
     @Override
-    public Double getCost() {
-        return this.cost;
+    public Double getPrice() {
+        return this.price;
     }
+
 }

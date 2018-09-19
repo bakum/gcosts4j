@@ -14,7 +14,7 @@ public class NodeTest {
     @Test
     public void toStringTest() {
         Node n = new Node("v1","Desc");
-        String guid = n.getGuid();
+        String guid = n.getGuid();//TODO Дописать тест toString() для класса Node
         //assertThat(n.toString(),);
     }
 }

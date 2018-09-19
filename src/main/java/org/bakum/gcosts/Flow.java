@@ -41,4 +41,10 @@ public class Flow extends DefaultWeightedEdge {
         return false;
     }
 
+    public Double getAmount() {
+        Double price = this.cost.getPrice();
+        Double quantity = this.cost.getQuantity();
+        return price * quantity;
+    }
+
 }
