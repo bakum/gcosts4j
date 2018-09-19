@@ -1,13 +1,16 @@
 package org.bakum.gcosts;
 
+import org.bakum.gcosts.enumeration.FlowDirection;
 import org.jgrapht.graph.DefaultWeightedEdge;
 
 public class Flow extends DefaultWeightedEdge {
 
     private Costs cost;
+    private FlowDirection direction;
 
     public Flow(){
         super();
+        this.direction = FlowDirection.FLOW;
     }
 
     public Flow(Costs v1){
@@ -23,24 +26,6 @@ public class Flow extends DefaultWeightedEdge {
         this.cost = costs;
     }
 
-    public boolean isLoop() {
-        if (getSource().equals(getTarget())) return true;
-
-        return false;
-    }
-
-    public boolean isEndDebt() {
-        if (isLoop() && (getWeight() < 0.0)) return true;
-
-        return false;
-    }
-
-    public boolean isBeginDebt() {
-        if (isLoop() && (getWeight() > 0.0)) return true;
-
-        return false;
-    }
-
     public Double getAmount() {
         if (this.cost == null) return 0.0;
         Double price = this.cost.getPrice();
@@ -48,4 +33,16 @@ public class Flow extends DefaultWeightedEdge {
         return price * quantity;
     }
 
+    public FlowDirection getDirection() {
+        return direction;
+    }
+
+    public void setDirection(FlowDirection direction) {
+        this.direction = direction;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }
