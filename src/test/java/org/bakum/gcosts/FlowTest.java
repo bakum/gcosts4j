@@ -1,8 +1,8 @@
 package org.bakum.gcosts;
 
+import org.bakum.gcosts.util.PojoTestUtils;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 public class FlowTest {

@@ -1,5 +1,6 @@
 package org.bakum.gcosts;
 
+import org.bakum.gcosts.util.PojoTestUtils;
 import org.junit.Test;
 
 

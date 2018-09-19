@@ -41,7 +41,7 @@ public class Node {
     @Override
     public String toString() {
 
-        return this.guid + " - " + this.name + ": " + this.description;
-//        return this.name + ": " + this.description;
+//        return this.guid + " - " + this.name + ": " + this.description;
+        return this.name + ": " + this.description;
     }
 }

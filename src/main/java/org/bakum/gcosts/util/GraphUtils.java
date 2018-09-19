@@ -1,5 +1,6 @@
 package org.bakum.gcosts.util;
 
+import org.bakum.gcosts.Node;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.DirectedWeightedPseudograph;
 
@@ -141,6 +142,16 @@ public class GraphUtils {
         }
     }
 
+    public static Node getVerticeByName(DirectedWeightedPseudograph<Node, DefaultWeightedEdge> graph, String name) {
+        Set<Node> vs = graph.vertexSet();
+        for (Node node : vs){
+            if (node.getName().equals(name)){
+                return node;
+            }
+        }
+        return null;
+    }
+
     /**
      * Find the leave vertices in the graph. I.E. Vertices that have no outgoing edges
      *
@@ -156,6 +167,41 @@ public class GraphUtils {
             }
         }
         return leaves;
+    }
+
+    /**
+     * Find the root vertices in the graph. I.E. Vertices that have no incoming edges
+     *
+     * @param graph graph to search
+     * @return mutable snapshot of all root vertices.
+     */
+    public static <V> Set<V> getRootVertices(DirectedWeightedPseudograph<V, DefaultWeightedEdge> graph) {
+        Set<V> vertexSet = graph.vertexSet();
+        Set<V> root = new HashSet<V>(vertexSet.size() * 2);
+        for (V vertex : vertexSet) {
+            if (graph.incomingEdgesOf(vertex).isEmpty()) {
+                root.add(vertex);
+            }
+        }
+        return root;
+    }
+
+    /**
+     * Find the middle vertices in the graph. I.E. Vertices that have incoming edges and have outgoing edges
+     *
+     * @param graph graph to search
+     * @return mutable snapshot of all middle vertices.
+     */
+    public static <V> Set<V> getMiddleVertices(DirectedWeightedPseudograph<V, DefaultWeightedEdge> graph) {
+        Set<V> vertexSet = graph.vertexSet();
+        Set<V> middle = new HashSet<V>(vertexSet.size() * 2);
+        for (V vertex : vertexSet) {
+            if (!graph.incomingEdgesOf(vertex).isEmpty()) {
+                if (!graph.outgoingEdgesOf(vertex).isEmpty())
+                {middle.add(vertex);}
+            }
+        }
+        return middle;
     }
 
     /**

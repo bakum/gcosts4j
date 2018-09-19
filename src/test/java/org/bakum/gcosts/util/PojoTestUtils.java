@@ -1,4 +1,4 @@
-package org.bakum.gcosts;
+package org.bakum.gcosts.util;
 
 import com.openpojo.reflection.impl.PojoClassFactory;
 import com.openpojo.validation.Validator;
