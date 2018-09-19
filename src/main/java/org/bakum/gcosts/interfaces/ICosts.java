@@ -7,8 +7,8 @@ public interface ICosts {
 
     Double getQuantity();
 
-    void setCost(Double c);
+    void setPrice(Double c);
 
-    Double getCost();
+    Double getPrice();
 
 }

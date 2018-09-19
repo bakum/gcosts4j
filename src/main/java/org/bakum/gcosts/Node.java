@@ -8,6 +8,7 @@ public class Node {
     private String description;
 
     public Node() {
+
         this.guid = UUID.randomUUID().toString();
     }
 
