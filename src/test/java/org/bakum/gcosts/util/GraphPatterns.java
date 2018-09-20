@@ -51,10 +51,12 @@ public class GraphPatterns {
         Flow f91_231 = (Flow) g.addEdge(n91, n231); //Первичные затраты на себестоимость (ОПЗ)
         f91_231.setCost(new Costs(200.0, 1.0));
         g.setEdgeWeight(f91_231, f91_231.getAmount());
+
         Flow f231_231_begin = (Flow) g.addEdge(n231, n231); //Начальные остатки незавершенного производства
         f231_231_begin.setCost(new Costs(2.0, 10.0));
         f231_231_begin.setDirection(FlowDirection.BEGIN_VALUE);
         g.setEdgeWeight(f231_231_begin, f231_231_begin.getAmount());
+
         Flow f231_231_end = (Flow) g.addEdge(n231, n231); //Конечные остатки незавершенного производства
         f231_231_end.setCost(new Costs(0.0, -10.0));
         f231_231_end.setDirection(FlowDirection.END_VALUE);

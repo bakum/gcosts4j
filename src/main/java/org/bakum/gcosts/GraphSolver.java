@@ -24,8 +24,10 @@ public class GraphSolver {
     }
 
     public void setCurrency(Currency currency) {
+        if (this.currency != currency) {
+            this.rate = 0.0;
+        }
         this.currency = currency;
-        this.rate = 0.0;
     }
 
     public Double getRate() {
