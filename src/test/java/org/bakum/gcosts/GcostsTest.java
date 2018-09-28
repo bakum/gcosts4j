@@ -2,6 +2,7 @@ package org.bakum.gcosts;
 
 import org.bakum.gcosts.util.GraphPatterns;
 import org.bakum.gcosts.util.GraphUtils;
+import org.jgrapht.alg.cycle.CycleDetector;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.junit.After;
 import org.junit.Before;
@@ -10,8 +11,7 @@ import org.junit.Test;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class GcostsTest {
 
@@ -24,7 +24,8 @@ public class GcostsTest {
 
     @Before
     public void setUp() throws Exception {
-        g = GraphPatterns.getInstance().getAccountingGraph();
+        g = GraphPatterns.getInstance().getAccountingGraph(true);
+        //g = GraphSolver.getInstance().loadFromFile("test.graphml");
 
         p1 = GraphUtils.getVerticeByName(g,"p1");
         n91 = GraphUtils.getVerticeByName(g,"91");
@@ -49,9 +50,20 @@ public class GcostsTest {
         DijkstraShortestPath dijkstraShortestPath
                 = new DijkstraShortestPath(g);
         List<Node> shortestPath = dijkstraShortestPath
-                .getPath(p1,n901).getVertexList();
+                .getPath(n91,n901).getVertexList();
 
         assertNotNull(shortestPath);
+    }
+
+    @Test
+    public void whenCheckCycles_thenDetectCycles() {
+        CycleDetector<Node, Flow> cycleDetector
+                = new CycleDetector<Node, Flow>(g);
+
+        assertTrue(cycleDetector.detectCycles());
+        Set<Node> cycleVertices = cycleDetector.findCycles();
+
+        assertTrue(cycleVertices.size() > 0);
     }
 
     @Test

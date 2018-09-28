@@ -17,7 +17,7 @@ public class GraphUtilsTest {
 
     @Before
     public void setUp() throws Exception {
-        g = GraphPatterns.getInstance().getAccountingGraph();
+        g = GraphPatterns.getInstance().getAccountingGraph(true);
     }
 
     @After

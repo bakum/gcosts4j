@@ -1,16 +1,19 @@
 package org.bakum.gcosts;
 
 import org.bakum.gcosts.enumeration.FlowDirection;
+import org.bakum.gcosts.enumeration.FlowType;
 import org.jgrapht.graph.DefaultWeightedEdge;
 
 public class Flow extends DefaultWeightedEdge {
 
     private Costs cost;
     private FlowDirection direction;
+    private FlowType type;
 
     public Flow(){
         super();
         this.direction = FlowDirection.FLOW;
+        this.type = FlowType.SECONDARY;
     }
 
     public Flow(Costs v1){
@@ -39,6 +42,14 @@ public class Flow extends DefaultWeightedEdge {
 
     public void setDirection(FlowDirection direction) {
         this.direction = direction;
+    }
+
+    public FlowType getType() {
+        return type;
+    }
+
+    public void setType(FlowType type) {
+        this.type = type;
     }
 
     @Override

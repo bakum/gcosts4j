@@ -207,7 +207,7 @@ public class GraphUtils {
     /**
      * Removes vertices from graph
      *
-     * @param graph    raph to mutate
+     * @param graph    graph to mutate
      * @param vertices vertices to remove
      */
     public static <V> void removeVertices(DirectedWeightedPseudograph<V, DefaultWeightedEdge> graph, Set<V> vertices) {

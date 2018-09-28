@@ -1,12 +1,18 @@
 package org.bakum.gcosts;
 
 import org.bakum.gcosts.enumeration.Currency;
+import org.bakum.gcosts.util.GraphPatterns;
 import org.bakum.gcosts.util.PojoTestUtils;
+import org.jgrapht.io.ExportException;
+import org.jgrapht.io.ImportException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import static org.junit.Assert.assertEquals;
 
 public class GraphSolverTest {
 
@@ -34,5 +40,30 @@ public class GraphSolverTest {
     @Test
     public void testAccesors_shouldAccessProperField() {
         PojoTestUtils.validateAccessors(GraphSolver.class);
+    }
+
+    @Test
+    public void saveToFile() {//TODO дописать тест сохранения в файл
+        Gcosts<Node,Flow> graph = GraphPatterns.getInstance().getAccountingGraph(true);
+        try {
+            gs.saveToFile(graph,"test.graphml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ExportException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void loadFromFile() {//TODO дописать тест загрузки из файла
+        try {
+            Gcosts<Node,Flow> graph = gs.loadFromFile("test.graphml", true);
+            Gcosts<Node,Flow> g = GraphPatterns.getInstance().getAccountingGraph(true);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (ImportException e) {
+            e.printStackTrace();
+        }
     }
 }
